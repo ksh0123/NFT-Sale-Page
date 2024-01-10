@@ -1,5 +1,5 @@
 # PERSONAL NFT DASHBOARD
-<img width="1512" alt="image" src="https://github.com/BCS-4/react_project_kangshinhye/assets/122417190/d3db3eb9-6cb7-46cb-a5ff-55719cab7654">
+<img width="1511" alt="image" src="https://github.com/ksh0123/NFT-Sale-Page/assets/122417190/bcfdbfe2-b176-481a-a3cb-32531ac79cda">
 
 ### 사이트 소개
 - 내가 만든 NFT를 전시와 판매 및 구매 기능을 제공하는 퍼스널 대시보드입니다.
