@@ -1,16 +1,15 @@
 import { useSDK } from "@metamask/sdk-react";
 import { FC, useEffect } from "react";
-import { MdLogin, MdLogout } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
+import { MdLogin, MdLogout, MdSell } from "react-icons/md";
 import { GoFileDirectoryFill, GoHomeFill } from "react-icons/go";
-import { MdSell } from "react-icons/md";
-
 import { HeaderProps } from "../types";
 
 const Header: FC<HeaderProps> = ({ account, setAccount }) => {
   const { sdk } = useSDK();
   const navigate = useNavigate();
 
+  // Connect to metamask sdk when login button is clicked
   const onClickMetaMask = async () => {
     try {
       const accounts: any = await sdk?.connect();
@@ -20,6 +19,7 @@ const Header: FC<HeaderProps> = ({ account, setAccount }) => {
     }
   };
 
+  // Set account to null when logout button is clicked
   const onClickLogout = async () => {
     try {
       setAccount(null);
@@ -28,6 +28,7 @@ const Header: FC<HeaderProps> = ({ account, setAccount }) => {
     }
   };
 
+  // Account changed in metamask app is reflected on the web app
   useEffect(() => {
     const accountChange = (newAccount: any) => {
       setAccount(newAccount[0]);
@@ -44,6 +45,7 @@ const Header: FC<HeaderProps> = ({ account, setAccount }) => {
     };
   }, [account]);
 
+  // Navigate to main page if account is not available
   useEffect(() => {
     if (!account) {
       navigate("/");
@@ -52,14 +54,12 @@ const Header: FC<HeaderProps> = ({ account, setAccount }) => {
 
   return (
     <>
-      <header className="sticky h-20 top-0 mx-20 px-2 pt-10 flex justify-between items-start z-30">
+      <header className="sticky h-20 top-0 mx-10 md:mx-20 pt-10 flex justify-between items-center z-30">
         <Link to="/">
-          <div className="flex flex-col overflow-visible justify-center items-center gap-1">
-            <img
-              src="/images/bcs-logo.PNG"
-              className="fill-slate-100 scale-50"
-            />
-          </div>
+          <img
+            src="/images/bcs-logo.PNG"
+            className="fill-slate-100 -translate-x-6 scale-50"
+          />
         </Link>
         <div>
           {account ? (
@@ -83,8 +83,9 @@ const Header: FC<HeaderProps> = ({ account, setAccount }) => {
           )}
         </div>
       </header>
+      {/* Only displayed when wallet is connected */}
       <div
-        className={`sticky top-1/4 w-fit flex flex-col gap-14 ml-20 pl-4 z-40 ${
+        className={`sticky top-1/4 w-fit flex flex-col gap-14 ml-10 md:ml-20 pl-4 z-40 ${
           account ? "block" : "hidden"
         }`}
       >
